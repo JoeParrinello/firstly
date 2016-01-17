@@ -1,0 +1,29 @@
+{
+  "name": "firstly",
+  "description": "firstly",
+  "main": "bin/www",
+  "authors": [
+    "Trevor Summerfield <tresummerfield@gmail.com>",
+    "Joe Parrinello <joe.parrinello@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "firstly"
+  ],
+  "homepage": "https://github.com/JoeParrinello/firstly",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6"
+  }
+}
