@@ -4,9 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session      = require('express-session');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var mongoose = require('mongoose');
+
+var passport = require('passport');
+
+
+var configDB = require('./config/database.js');
+
+mongoose.connect(configDB.url);
+
+
+require('./config/passport')(passport); // pass passport for configuration
 
 var app = express();
 
@@ -14,6 +24,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(session({ secret: 'thisisafirstlysecret' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -28,8 +41,14 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var autho = require('./routes/auth')(passport);
+
 app.use('/', routes);
 app.use('/users', users);
+app.use('/auth', autho)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
