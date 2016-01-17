@@ -5,10 +5,10 @@ module.exports = function(passport) {
     var router = express.Router();
 
     // route for facebook authentication and login
-    router.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    router.get('/facebook', passport.authenticate('facebook', {scope: 'email'}));
 
     // handle the callback after facebook has authenticated the user
-    router.get('/auth/facebook/callback',
+    router.get('/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/profile',
             failureRedirect: '/'
