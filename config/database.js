@@ -3,6 +3,6 @@
  */
 
 module.exports = {
-    'url' : 'mongodb://shiggy.xyz:27017/firstly'
+    'url' : 'mongodb://shiggy.xyz/firstly'
 
 };
